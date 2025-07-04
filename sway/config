@@ -1,0 +1,199 @@
+#========== AUTOSTART ==========#
+exec --no-startup-id dbus-update-activation-environment --all
+exec dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec pipewire
+exec wireplumber
+exec pipewire-pulse
+exec waybar
+
+#========== Variables ==========#
+set $mod Mod4
+# Vim like hotkeys
+set $left h
+set $down j
+set $up k
+set $right l
+# Programs
+set $term kitty
+set $menu wofi --show drun
+set $file_manager thunar
+set $lock_menu swaylock
+
+# Wallpaper (need swaybg package)
+output * bg /home/eugene/FILES/Pictures/wallpapers/workspace.png fill
+#output eDP-1 resolution 1920x1080 position 0,0
+
+
+#swayidle -w \
+#    timeout 300 'swaylock -f -c 000000' \
+#    timeout 600 'swaymsg "output * dpms off"' \
+#         resume 'swaymsg "output * dpms on"' \
+#    before-sleep 'swaylock -f -c 000000'
+
+
+#======== Input ========#
+input * {
+    xkb_layout us,ru
+    xkb_options grp:win_space_toggle
+}
+input * {
+    tap enabled
+    natural_scroll disabled
+    dwt disabled          # (Disable touchpad for typing)
+}
+
+# Window border
+default_border pixel 1
+default_floating_border pixel 1
+smart_borders on
+#client.background #242424
+
+
+#========== Key bindings ==========#
+# Program binds
+bindsym $mod+return exec $term
+bindsym $mod+ctrl+return exec kitty -d "~/FILES/Programming"
+bindsym $mod+shift+return exec kitty -T "float_kitty"
+bindsym --to-code $mod+e exec $file_manager
+bindsym --to-code $mod+r exec $menu
+
+# Base window binds
+bindsym --to-code $mod+d kill
+bindsym --to-code $mod+t floating toggle
+floating_modifier $mod normal
+bindsym --to-code $mod+f fullscreen
+# Move focus
+focus_follows_mouse no
+bindsym --to-code $mod+$left focus left
+bindsym --to-code $mod+$down focus down
+bindsym --to-code $mod+$up focus up
+bindsym --to-code $mod+$right focus right
+
+# Base system binds
+bindsym --to-code $mod+u reload
+bindsym --to-code $mod+m exec $lock_menu
+bindsym --to-code $mod+shift+m exec killall sway && killall pipewire && killall pipewire-pulse
+
+#========== Volume binds ==========
+bindsym --to-code $mod+alt+x exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
+bindsym --to-code $mod+alt+z exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%+
+bindsym --to-code $mod+alt+shift+x exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym --to-code $mod+alt+shift+z exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+
+#========== Waybar binds ==========
+bindsym --to-code $mod+ctrl+w exec killall waybar
+bindsym --to-code $mod+w exec killall -SIGUSR1 waybar
+bindsym --to-code $mod+shift+w exec waybar
+
+#========== Screenshot binds ==========
+bindsym --to-code $mod+shift+i exec cd ~/FILES/Screenshots/ && grim -g "$(slurp)" ~/FILES/Screenshots/"$(date +%Y)-$(date +%m)-$(date +%d)_$(date +%H):$(date +%M):$(date +%S).$(date +%N)_screenshot".png
+bindsym --to-code $mod+i exec cd ~/FILES/Screenshots/ && grim ~/FILES/Screenshots/"$(date +%Y)-$(date +%m)-$(date +%d)_$(date +%H):$(date +%M):$(date +%S).$(date +%N)_screenshot".png
+#bindsym --to-code $mod+i exec cd ~/FILES/Screenshots/ && grim -g "$(slurp)" - | wl-copy
+
+
+#========== Workspaces ==========#
+# Base workspaces
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+# Special workspaces
+bindsym --to-code $mod+c workspace chromium-work
+bindsym --to-code $mod+o workspace obs-work
+bindsym --to-code $mod+v workspace vlc-work
+bindsym --to-code $mod+s workspace telegram-work
+bindsym --to-code $mod+alt+c workspace incognito-chromium-work
+bindsym --to-code $mod+alt+v workspace vpn-stuff
+bindsym --to-code $mod+alt+o workspace notes-stuff
+
+
+
+
+# Winrules 35
+#========== Winrules 35 ==========#
+# borderless
+#for_window [class="^.*"] border pixel 1
+
+for_window [app_id="thunar"] floating enable, move position center, resize set 1630 890, opacity 0.92
+
+for_window [app_id="nekoray"] floating enable, move position center, resize set 1200 770, border none, opacity 0.94
+
+for_window [title="feh"] floating enable
+
+for_window [title="float_kitty"] floating enable, border none, resize set 940 510
+
+for_window [title="VLC media player"] border none, move workspace vlc-work
+
+for_window [app_id="telegram"] border none, move workspace telegram-work
+
+for_window [app_id="obs"] border none, move workspace obs-work
+
+
+
+
+#========== Window manipulation ==========#
+# Move the focused window with the same, but add Shift
+bindsym --to-code $mod+Shift+$left move left
+bindsym --to-code $mod+Shift+$down move down
+bindsym --to-code $mod+Shift+$up move up
+bindsym --to-code $mod+Shift+$right move right
+
+# Move active window to a workspace
+bindsym $mod+shift+1 move window to workspace number 1
+bindsym $mod+shift+2 move window to workspace number 2
+bindsym $mod+shift+3 move window to workspace number 3
+bindsym $mod+shift+4 move window to workspace number 4
+bindsym $mod+shift+5 move window to workspace number 5
+bindsym $mod+shift+6 move window to workspace number 6
+bindsym $mod+shift+7 move window to workspace number 7
+# Move active window to a special workspace
+bindsym --to-code $mod+shift+c move window to workspace chromium-work
+bindsym --to-code $mod+shift+o move window to workspace obs-work
+bindsym --to-code $mod+shift+v move window to workspace vlc-work
+bindsym --to-code $mod+shift+s move window to workspace telegram-work
+bindsym --to-code $mod+shift+alt+c move window to workspace incognito-chromium-work
+bindsym --to-code $mod+shift+alt+v move window to workspace vpn-stuff
+bindsym --to-code $mod+shift+alt+o move window to workspace notes-stuff
+
+# Resize
+mode "resize" {
+    bindsym --to-code ctrl+$left resize shrink width 1px
+    bindsym --to-code ctrl+$down resize grow height 1px
+    bindsym --to-code ctrl+$up resize shrink height 1px
+    bindsym --to-code ctrl+$right resize grow width 1px
+
+    bindsym --to-code $left resize shrink width 10px
+    bindsym --to-code $down resize grow height 10px
+    bindsym --to-code $up resize shrink height 10px
+    bindsym --to-code $right resize grow width 10px
+
+    bindsym --to-code shift+$left resize shrink width 100px
+    bindsym --to-code shift+$down resize grow height 100px
+    bindsym --to-code shift+$up resize shrink height 100px
+    bindsym --to-code shift+$right resize grow width 100px
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym --to-code $mod+shift+r mode "resize"
+
+
+#============== Laptop multimedia keys for volume, LCD brightness and screenshot ==============
+
+    # Special keys to adjust volume via PulseAudio
+    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+    # Special keys to adjust brightness via brightnessctl
+    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+    # Special key to take a screenshot with grim
+    bindsym Print exec grim
+
+
+include @sysconfdir@/sway/config.d/*

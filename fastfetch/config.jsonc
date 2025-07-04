@@ -1,0 +1,216 @@
+// Load with --load-config examples/2.jsonc
+// Note that you must replace the image path to an existing image to display it.
+
+//{
+//    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+//    // "logo": {
+//    //     "type": "iterm",
+//    //     "source": "~/Desktop/apple1.png",
+//    //     "width": 28,
+//    //     "height": 12
+//    // },
+//    "display": {
+//        "separator": "  ",
+//        "constants": [
+//            "─────────────────" // {$1}, used in Custom module
+//        ],
+//        "key": {
+//            "type": "icon",
+//            "paddingLeft": 2
+//        }
+//    },
+//    "modules": [
+//        {
+//            "type": "custom", // HardwareStart
+//            // {#1} is equivalent to `\u001b[1m`. {#} is equivalent to `\u001b[m`
+//            "format": "┌{$1} {#1}Hardware Information{#} {$1}┐"
+//        },
+//        "host",
+//        "cpu",
+//        "gpu",
+//        "disk",
+//        "memory",
+//        "swap",
+//        "display",
+//        "brightness",
+//        "battery",
+//        "poweradapter",
+//        "bluetooth",
+//        "sound",
+//        "gamepad",
+//	{
+//            "type": "custom",
+//            "format": " {#90}  {#31}  {#32}  {#33}  {#34}  {#35}  {#36}  {#37}  {#38}  {#39}       {#38}  {#37}  {#36}  {#35}  {#34}  {#33}  {#32}  {#31}  {#90}"
+//        },
+//        {
+//            "type": "custom", // SoftwareStart
+//            "format": "├{$1} {#1}Software Information{#} {$1}┤"
+//        },
+//        {
+//            "type": "title",
+//            "keyIcon": "",
+//            "key": "Title", // Title module has no key by default, so that icon is not displayed
+//            "format": "{user-name}@{host-name}"
+//        },
+//        "os",
+//        "kernel",
+//        "lm",
+//        "de",
+//        "wm",
+//        "shell",
+//        "terminal",
+//        "terminalfont",
+//        "theme",
+//        "icons",
+//        "wallpaper",
+//        "packages",
+//        "uptime",
+//        "media",
+//        {
+//            "type": "localip",
+//            "compact": true
+//        },
+//        {
+//            "type": "publicip",
+//            "timeout": 1000
+//        },
+//        {
+//            "type": "wifi",
+//            "format": "{ssid}"
+//        },
+//        "locale",
+//        {
+//            "type": "custom", // InformationEnd
+//            "format": "└{$1}──────────────────────{$1}┘"
+//        },
+//        {
+//            "type": "colors",
+//            "paddingLeft": 2,
+//            "symbol": "circle"
+//        }
+//    ]
+//}
+//
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    //"type": "small",
+    //"padding": {
+    //  "top": 2
+    //},
+    //"source": "~/.config/fastfetch/arch_btw.jpg",
+    "source": "~/.config/fastfetch/34.gif",
+    "width": 20,
+    "height": 10
+  },
+  "modules": [
+    "title",
+    //"separator",
+    {
+        "type": "custom",
+	"format": "\u001b[90m┌───────────────────────\u001b[2m\u001b[35mDistro\u001b[0m\u001b[90m─────────────────────┐"
+    },
+    {
+        "type": "os",
+        "key": "os",
+        "keyColor": "\u001b[35m"
+    },
+    //{
+    //    "type": "host",
+    //    "key": "├host",
+    //    "keyColor": "\u001b[35m"
+    //},
+    {
+        "type": "kernel",
+        "key": "├kernel",
+        "keyColor": "\u001b[35m"
+    },
+    //{
+    //    "type": "bios",
+    //    "key": "└bios",
+    //    "keyColor": "\u001b[35m"
+    //},
+    {
+        "type": "custom",
+        "format": "\u001b[90m───────────────────────\u001b[2m\u001b[36mSoftware\u001b[0m\u001b[90m───────────────────────"
+    },
+    {
+        "type": "wm",
+        "key": "WM",
+        "keyColor": "\u001b[34m"
+    },
+    {
+        "type": "terminal",
+        "key": "├term",
+        "keyColor": "\u001b[34m"
+    },
+    {
+        "type": "shell",
+        "key": "├sh",
+        "keyColor": "\u001b[34m"
+    },
+    {
+        "type": "uptime",
+        "key": "├upt",
+        "keyColor": "\u001b[34m"
+    },
+    {
+        "type": "packages",
+        "key": "└pkg",
+        "keyColor": "\u001b[34m"
+    },
+    {
+        "type": "custom",
+	"format": "\u001b[90m───────────────────────\u001b[2m\u001b[37mHardware\u001b[0m\u001b[90m───────────────────────"
+    },
+    {
+        "type": "cpu",
+        "key": "┌\u001b[34mcpu",
+        "keyColor": "\u001b[90m"
+    },
+    {
+        "type": "gpu",
+        "key": "├\u001b[36mgpu",
+        "keyColor": "\u001b[90m"
+    },
+    {
+        "type": "vulkan",
+        "key": "├\u001b[91mvulkan",
+        "keyColor": "\u001b[90m"
+    },
+    {
+        "type": "memory",
+        "key": "└\u001b[32mmemory",
+        "keyColor": "\u001b[90m"
+    },
+    {
+	"type": "custom",
+	"format": "\u001b[90m────────────────"
+    },
+//    {
+//        "type": "wifi",
+//        "key": "wifi",
+//        "keyColor": "\u001b[35m"
+//    },
+    {
+        "type": "media",
+        "key": "media",
+        "keyColor": "green"
+    },
+    {
+        "type": "player",
+        "key": "player",
+        "keyColor": "green"
+    },
+    //"disk",
+    //"player",
+    //"media",
+    //{
+//	"type": "custom", // InformationEnd
+//	"format": "└─────────────────────────────────────────────────┘"
+    //},
+    //"colors",
+//    "separator",
+    "break"
+  ]
+}
