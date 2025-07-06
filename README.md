@@ -1,4 +1,6 @@
-![](https://github.com/waflya-xleb/dotfiles/blob/main/github%20assets/2025-05-22_183010.556242914_screenshot.png)
+![](https://github.com/waflya-xleb/dotfiles/blob/main/github%20assets/2025-07-06_12%3A36%3A28.223186867_screenshot.png)
+![](https://github.com/waflya-xleb/dotfiles/blob/main/github%20assets/2025-07-06_12%3A29%3A37.303557171_screenshot.png)
+![](https://github.com/waflya-xleb/dotfiles/blob/main/github%20assets/2025-07-06_12%3A27%3A33.628693706_screenshot.png)
 ___
 ## Software list
 1. [sway](https://github.com/swaywm/sway) - window manager
