@@ -17,19 +17,9 @@ set $right l
 set $term kitty
 set $menu wofi --show drun
 set $file_manager thunar
-set $lock_menu swaylock
 
 # Wallpaper (need swaybg package)
 output * bg /home/eugene/FILES/Pictures/wallpapers/workspace.png fill
-#output eDP-1 resolution 1920x1080 position 0,0
-
-
-#swayidle -w \
-#    timeout 300 'swaylock -f -c 000000' \
-#    timeout 600 'swaymsg "output * dpms off"' \
-#         resume 'swaymsg "output * dpms on"' \
-#    before-sleep 'swaylock -f -c 000000'
-
 
 #======== Input ========#
 input * {
@@ -53,7 +43,7 @@ smart_borders on
 # Program binds
 bindsym $mod+return exec $term
 bindsym $mod+ctrl+return exec kitty -d "~/FILES/Programming"
-bindsym $mod+shift+return exec kitty -T "float_kitty"
+bindsym $mod+shift+return exec kitty --class="float_kitty"
 bindsym --to-code $mod+e exec $file_manager
 bindsym --to-code $mod+r exec $menu
 
@@ -71,8 +61,7 @@ bindsym --to-code $mod+$right focus right
 
 # Base system binds
 bindsym --to-code $mod+u reload
-bindsym --to-code $mod+m exec $lock_menu
-bindsym --to-code $mod+shift+m exec killall sway && killall pipewire && killall pipewire-pulse
+bindsym --to-code $mod+alt+l exec killall sway && killall pipewire && killall pipewire-pulse
 
 #========== Volume binds ==========
 bindsym --to-code $mod+alt+x exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 1%-
@@ -123,7 +112,7 @@ for_window [app_id="nekoray"] floating enable, move position center, resize set 
 
 for_window [title="feh"] floating enable
 
-for_window [title="float_kitty"] floating enable, border none, resize set 940 510
+for_window [app_id="float_kitty"] floating enable, border none, resize set 940 510
 
 for_window [title="VLC media player"] border none, move workspace vlc-work
 

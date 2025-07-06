@@ -1,41 +1,42 @@
 {
   "layer": "overlay",
   "position": "top",
-    "margin-top" : 0,
-    "margin-left": 0,
-    "margin-right": 0,
+    "margin-top" : 3,
+    "margin-bottom" : 3,
+    "margin-left": 2,
+    "margin-right": 2,
     "height" : 0,
-    "width" : 800,
+    "width" : 0,
     "modules-left": [
       /*"sway/workspaces",*/
-      /*"sway/language",*/
-      "network",
+      /*"network",*/
+      "sway/window",
     ],
     "modules-center": [
-      "pulseaudio",
+      /*"pulseaudio",*/
       "clock",
-      "sway/window",
     ],
     "modules-right": [
     "memory",
     "cpu",
     "temperature",
+    "sway/language",
     "battery",
     ],
     "sway/language": {
-      "format-alt": "{}",
+      "format": "{}",
       /*"format-en": "ツ",
       "format-ru": "ノ",*/
       /*"format-en": "holo[EN]",
       "format-ru": "я[RU]сский",*/
       "format-en": "[EN]",
       "format-ru": "[RU]",
-      "format": "|",
+      "format-alt": "-",
       },
     "sway/window": {
-      "format-alt": " {} ",
-      "format": "-",
-      "max-length": 38,
+      "format": " {} ",
+      "format-alt": "-",
+      "max-length": 250,
       /*"max-length": 350,*/
       "rewrite": {
         "  ": ""
@@ -55,28 +56,26 @@
 	"5": "◇",
 	"6": "◇",
 	"7": "◇",
-	"8": "◇",
-	"9": "◇",
-	"10": "◇",
 	"chromium-work": "c",
 	"obs-work": "o",
+	"notes-stuff": "oa",
 	"vlc-work": "v",
+	"vpn-stuff": "va",
 	"telegram-work": "s",
-	"incognito-chromium-work": "ac",
-	"obsidian-work": "aj",
+	"incognito-chromium-work": "ca",
       },
 
       "sort-by-number": true,
-      "persistent-workspaces": {
-        "*": 4, // 5 workspaces by default on every monitor
-        "HDMI-A-1": 3 // but only three on HDMI-A-1
-      },
+      //"persistent-workspaces": {
+        //"*": 4, // 5 workspaces by default on every monitor
+        //"HDMI-A-1": 3 // but only three on HDMI-A-1
+      //},
     },
 
     "clock": {
 	"interval": 1,
-        "format": "{:%r}",
-	"format-alt": "{:%T}",
+        "format": "{:%r, %A %B %D}",
+	"format-alt": "{:%T, %A %B %d}",
     	"tooltip-format": "<tt><small>{calendar}</small></tt>",
 	"calendar": {
                     "mode"          : "month",
@@ -102,23 +101,23 @@
 
     "cpu": {
       "interval": 1,
-      "format": "| {usage}% |",
+      "format-alt": "| {usage}% |",
       "tooltip": true,
-      "format-alt": "| {usage}% | {avg_frequency}GHz |"
+      "format": "| {usage}% | {avg_frequency}GHz |"
     },
 
     "memory": {
       "interval": 1,
-      "format": "{used:0.1f}G",
-      "format-alt": "{used:0.1f}G/{total:0.1f}G"
+      "format-alt": "{used:0.1f}G",
+      "format": "{used:0.1f}G/{total:0.1f}G"
     },
 
     "temperature": {
       "interval": 1,
       "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
       "input-filename": "temp2_input",
-      "format-alt": "{temperatureC}°C",
-      "format": "{icon}",
+      "format": "{temperatureC}°C",
+      "format-alt": "{icon}",
       "critical-threshold": 70,
       "format-icons": [" ", "", "", "", "", "-", "a", "a", "b", "b", "c", "c", "c++", "gigi"],
       "tooltip": true
@@ -133,7 +132,8 @@
       "format-full": "{icon} {capacity}%",
       "format-charging": " {capacity}%",
       "format-plugged": " {capacity}%",
-      "format-icons": ["", "", "", "", ""],
+      /*"format-icons": ["", "", "", "", ""],*/
+      "format-icons": ["|", "|", "|", "|", "|"],
     },
 
     "network": {

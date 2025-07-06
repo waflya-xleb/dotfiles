@@ -7,8 +7,8 @@
 }
 
 window#waybar {
-  background-color: rgba(0, 0, 0, 0);
-  border-radius: 7px;
+  background-color: rgba(24, 24, 24, 0.7);
+  border-radius: 0px;
   transition-property: background-color;
   transition-duration: 0.5s;
 }
@@ -30,7 +30,6 @@ window#waybar {
 #temperature,
 #network,
 #language,
-#cava,
 #pulseaudio {
   padding: 0 6px;
 }
@@ -41,14 +40,7 @@ window#waybar {
 }
 
 #language {
-  color: @text;
-}
-
-#cava {
-  color: @mauve;
-  /*background-color: rgba( 6, 6, 10, 0.5 );
-  border-radius: 5;*/
-  /*color: rgba( 25, 25, 25, 1.0 );*/
+  color: rgba( 180, 180, 180, 1.0 );
 }
 
 #network {
@@ -64,7 +56,8 @@ window#waybar {
 }
 
 #clock {
-  color: @peach;
+  /*color: @peach;*/
+  color: rgba( 250, 169, 128, 1.0);
 }
 
 #cpu {
@@ -77,15 +70,15 @@ window#waybar {
 
 #window {
   padding: 0 0px;
-  color: rgba(140, 140, 140, 0.8);
+  color: rgba(190, 190, 190, 0.8);
 }
 
 .modules-right,
 .modules-left,
 .modules-center {
-  background-color: rgba(40, 40, 40, 0.8);
+  background-color: rgba(32, 32, 32, 0.8);
   /*background-color: @base;*/
-  border-radius: 7px;
+  border-radius: 0px;
 }
 .modules-right {
   padding: 0 6px;
